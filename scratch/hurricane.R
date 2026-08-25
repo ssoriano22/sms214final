@@ -1,4 +1,4 @@
-# Spagetti Script - EDS214 Day 1 PM
+# Spaghetti Script - EDS214 Day 1 PM and Merge Conflict practice
 
 # Load packages
 library(tidyverse)
