@@ -3,6 +3,7 @@
 # Load packages
 library(tidyverse)
 library(reprex)
+library(ggh4x)
 
 # Read in data
 Q1_Bisley_data <- read_csv("data/QuebradaCuenca1-Bisley.csv")
@@ -11,7 +12,12 @@ Q3_Bisley_data <- read_csv("data/QuebradaCuenca3-Bisley.csv")
 PRM_data <- read_csv("data/RioMameyesPuenteRoto.csv")
 units_data <- read_csv("data/LUQ LTER MDLs.csv")
 
-# Join data df here - just Q2_Bisley for now
+# Combine data dfs here - below code only uses Q2_Bisley as of 25AUG2026
+
+combo_data <- rbind(Q1_Bisley_data, Q2_Bisley_data, Q3_Bisley_data, PRM_data)
+clean_combo_data <- combo_data |>
+  # Rename MPR Sample_ID to PRM (might change later?)
+  mutate(Sample_ID = fct_recode(Sample_ID, PRM = "MPR"))
 
 # Calculate moving average - 9wk
 
@@ -87,7 +93,19 @@ Q2_Bisley_smooth_longer <- Q2_Bisley_smooth |>
     values_to = "Mean_Concentration"
   )
 
-# Line Plot - ggplot
+# Visualization - Line Plot
+
+# Set custom y axis scales and labels - only necessary for facetted_pos_scales() if used
+# y_scales_labels <- list(
+#   # For facet row 'A', define its scale name / breaks / limits
+#   #A = scale_y_continuous(name = "A"),
+#   B = scale_y_continuous(name = "B"),
+#   C = scale_y_continuous(name = "C"),
+#   D = scale_y_continuous(name = "D"),
+#   E = scale_y_continuous(name = "E")
+# )
+
+# Line plot - ggplot2, facet_grid()
 ggplot(
   data = Q2_Bisley_smooth_longer,
   mapping = aes(
@@ -108,8 +126,11 @@ ggplot(
   labs(
     title = "Ion Concentrations over Time",
     x = "Window Start Date",
-    y = "Mean Concentration (mgL OR ugL)",
+    y = "Mean Concentration",
     color = "Ion"
   ) +
-  facet_grid(Ion ~ .)
+  facet_grid(Ion ~ ., scales = "free_y")
+# Maybe used to add independant y labels?
+#facetted_pos_scales(y = y_scales_labels)
+# Maybe used to set maunal line colors?
 #scale_color_manual(values = c("#e3d727", "#690c8b"))

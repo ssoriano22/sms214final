@@ -17,6 +17,8 @@ This repository contains scripts, documentation, and data to recreate Figure 3 f
 
 ## Current Contributors:
 
+Sophia Soriano - [GitHub](<https://github.com/ssoriano22>), [LinkedIn](<https://www.linkedin.com/in/smsoriano22>)
+
 ## References:
 
 Schaefer, D.A.; McDowell, W.H.; Scatena, F.N., and Asbury, C.E. (2000): Effects of hurricane disturbance on stream water concentrations and fluxes in eight tropical forest watersheds of the Luquillo Experimental Forest, Puerto Rico. _Journal of Tropical Ecology_.
