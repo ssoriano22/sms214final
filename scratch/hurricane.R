@@ -36,16 +36,6 @@ smooth_data_longer <- smooth_data |>
 
 # Visualization - Line Plot
 
-# Set custom y axis scales and labels - only necessary for facetted_pos_scales() if used
-# y_scales_labels <- list(
-#   # For facet row 'A', define its scale name / breaks / limits
-#   #A = scale_y_continuous(name = "A"),
-#   B = scale_y_continuous(name = "B"),
-#   C = scale_y_continuous(name = "C"),
-#   D = scale_y_continuous(name = "D"),
-#   E = scale_y_continuous(name = "E")
-# )
-
 # Line plot - ggplot2, facet_grid()
 ggplot(
   data = smooth_data_longer,
@@ -71,7 +61,3 @@ ggplot(
     color = "Ion"
   ) +
   facet_grid(Ion ~ ., scales = "free_y")
-# Maybe used to add independant y labels?
-#facetted_pos_scales(y = y_scales_labels)
-# Maybe used to set maunal line colors?
-#scale_color_manual(values = c("#e3d727", "#690c8b"))
