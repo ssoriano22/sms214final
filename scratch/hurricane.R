@@ -13,21 +13,28 @@ Q3_Bisley_data <- read_csv("data/QuebradaCuenca3-Bisley.csv")
 PRM_data <- read_csv("data/RioMameyesPuenteRoto.csv")
 units_data <- read_csv("data/LUQ LTER MDLs.csv")
 
-# Combine data dfs here - below code only uses Q2_Bisley as of 25AUG2026
-
-combo_data <- rbind(Q1_Bisley_data, Q2_Bisley_data, Q3_Bisley_data, PRM_data)
-clean_combo_data <- combo_data |>
-  # Rename MPR Sample_ID to PRM (might change later?)
-  mutate(Sample_ID = fct_recode(Sample_ID, PRM = "MPR"))
-
 # Calculate moving average - 9wk
 
-# Call moving average function from R/ - just Q2_Bisley to test function first
-smooth_data <- moving_average(Q2_Bisley_data)
+# Call moving average function from R/ for each of the 4 data df
+sm_Q1_Bisley_data <- moving_average(Q1_Bisley_data)
+sm_Q1_Bisley_data <- sm_Q1_Bisley_data |> mutate(Site_ID = "BQ1")
+sm_Q2_Bisley_data <- moving_average(Q2_Bisley_data)
+sm_Q2_Bisley_data <- sm_Q2_Bisley_data |> mutate(Site_ID = "BQ2")
+sm_Q3_Bisley_data <- moving_average(Q3_Bisley_data)
+sm_Q3_Bisley_data <- sm_Q3_Bisley_data |> mutate(Site_ID = "BQ3")
+sm_PRM_data <- moving_average(PRM_data)
+sm_PRM_data <- sm_PRM_data |> mutate(Site_ID = "PRM")
 
-# Pivot longer to create ion columns (and sample_loc - future task)
-smooth_data_longer <- smooth_data |>
-  #select(window_start, k_mgL, mg_mgL) |> #Using since only plotting 2 ions
+# Combine smoothed data from all 4 sites
+combo_smooth_data <- rbind(
+  sm_Q1_Bisley_data,
+  sm_Q2_Bisley_data,
+  sm_Q3_Bisley_data,
+  sm_PRM_data
+)
+
+# Pivot longer to create ion columns
+smooth_data_longer <- combo_smooth_data |>
   pivot_longer(
     cols = k_mgL:`nh4-n_ugL`,
     names_to = "Ion",
@@ -36,30 +43,13 @@ smooth_data_longer <- smooth_data |>
 
 # Visualization - Line Plot
 
-# Set custom y axis scales and labels - only necessary for facetted_pos_scales() if used
-# y_scales_labels <- list(
-#   # For facet row 'A', define its scale name / breaks / limits
-#   #A = scale_y_continuous(name = "A"),
-#   B = scale_y_continuous(name = "B"),
-#   C = scale_y_continuous(name = "C"),
-#   D = scale_y_continuous(name = "D"),
-#   E = scale_y_continuous(name = "E")
-# )
-
 # Line plot - ggplot2, facet_grid()
 ggplot(
   data = smooth_data_longer,
   mapping = aes(
     x = window_start,
     y = Mean_Concentration,
-    color = fct_recode(
-      Ion,
-      K = "k_mgL",
-      Mg = "mg_mgL",
-      `NO3-N` = "no3-n_ugL",
-      Ca = "ca_mgL",
-      `NH4-N` = "nh4-n_ugL"
-    )
+    color = Site_ID
   )
 ) +
   geom_line() +
@@ -71,7 +61,3 @@ ggplot(
     color = "Ion"
   ) +
   facet_grid(Ion ~ ., scales = "free_y")
-# Maybe used to add independant y labels?
-#facetted_pos_scales(y = y_scales_labels)
-# Maybe used to set maunal line colors?
-#scale_color_manual(values = c("#e3d727", "#690c8b"))
