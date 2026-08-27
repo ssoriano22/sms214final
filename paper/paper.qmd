@@ -9,10 +9,13 @@ The following is the final project analysis for EDS214. The main goal for this p
 library(tidyverse)
 library(reprex)
 library(ggh4x)
+# Qmd RENDER source
 source("../R/moving-average.R")
+# POSITRON CONSOLE source
+# source(here::here("R/moving-average.R"))
 ```
 
-![Schaefer et al. (2000) Figure 3](../figs/Schaefer_etal_2000_Figure3.png)
+![Schaefer et al. (2000) Figure 3](here::here(figs/Schaefer_etal_2000_Figure3.png))
 
 Figure 1: The original Figure 3 from Schaefer et al. (2000) depicting the concentrations of 5 measured ions - K, NO~3~-N, Mg, Ca, and NH~4~-H - across 4 stream sites in Puerto Rico.
 
@@ -21,14 +24,17 @@ Figure 1: The original Figure 3 from Schaefer et al. (2000) depicting the concen
 The below code generates a summary of one out the 4 data sets downloaded for this project.
 
 ```{r}
-# Read in data
+# Read in data - QUARTO RENDER
 Q1_Bisley_data <- read_csv("../data/QuebradaCuenca1-Bisley.csv")
 Q2_Bisley_data <- read_csv("../data/QuebradaCuenca2-Bisley.csv")
 Q3_Bisley_data <- read_csv("../data/QuebradaCuenca3-Bisley.csv")
 PRM_data <- read_csv("../data/RioMameyesPuenteRoto.csv")
-units_data <- read_csv("../data/LUQ LTER MDLs.csv")
 
-glimpse(Q1_Bisley_data)
+# Read in data - POSITRON CONSOLE
+# Q1_Bisley_data <- read_csv(here::here("data/QuebradaCuenca1-Bisley.csv"))
+# Q2_Bisley_data <- read_csv(here::here("data/QuebradaCuenca2-Bisley.csv"))
+# Q3_Bisley_data <- read_csv(here::here("data/QuebradaCuenca3-Bisley.csv"))
+# PRM_data <- read_csv(here::here("data/RioMameyesPuenteRoto.csv"))
 ```
 
 ## Methods
@@ -69,23 +75,56 @@ smooth_data_longer <- combo_smooth_data |>
 # Visualization - Line Plot
 
 # Line plot - ggplot2, facet_grid()
-ggplot(
-  data = smooth_data_longer,
-  mapping = aes(
-    x = window_start,
-    y = Mean_Concentration,
-    color = Site_ID
-  )
-) +
+smooth_data_longer |>
+  mutate(
+    Ion = fct_recode(
+      Ion,
+      `K mgL` = "k_mgL",
+      `NO3-N ugL` = "no3-n_ugL",
+      `Mg mgL` = "mg_mgL",
+      `Ca mgL` = "ca_mgL",
+      `NH4-N ugL` = "nh4-n_ugL"
+    ),
+    Ion = fct_relevel(
+      Ion,
+      "K mgL",
+      "NO3-N ugL",
+      "Mg mgL",
+      "Ca mgL",
+      "NH4-N ugL"
+    )
+  ) |>
+  ggplot(
+    mapping = aes(
+      x = window_start,
+      y = Mean_Concentration,
+      linetype = Site_ID
+    )
+  ) +
   geom_line() +
   theme_bw() +
-  labs(
-    title = "Ion Concentrations over Time",
-    x = "Window Start Date",
-    y = "Mean Concentration",
-    color = "Ion"
+  theme(
+    legend.title = element_blank(), # Remove legend title
+    axis.title.y = element_blank(), # Remove y axis title
+    strip.placement = "outside", # Move y labels (ions) outside y ticks
+    legend.position = c(1, 1), # Coordinates for the top-left corner inside the panel
+    legend.justification = c(1, 1), # Anchor top-left of the legend box to the coordinate
   ) +
-  facet_grid(Ion ~ ., scales = "free_y")
+  labs(
+    x = "Years"
+  ) +
+  facet_grid(
+    Ion ~ .,
+    scales = "free_y", # Independent y-axis scales per grid
+    switch = "y" # Move y ion labels to left side
+  ) +
+  scale_x_date(sec.axis = dup_axis()) +
+  geom_vline(
+    xintercept = as.Date("1989-09-01"),
+    color = "black",
+    linetype = "dashed",
+    linewidth = 0.5
+  )
 ```
 
 Figure 2: Replicated version of Schaefer et al. (2000) Figure 3 generated for this project.
