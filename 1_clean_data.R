@@ -28,5 +28,9 @@ combo_smooth_data <- rbind(
   sm_PRM_data
 )
 
-# Save smoothed data to output folder
-write_csv(combo_smooth_data, "output/combo_smooth_data.csv")
+#Filter smooth data to years relevant to Figure 3 - 1988 to 1995
+filt_smooth_data <- combo_smooth_data |>
+  filter(year(window_start) >= 1988 & year(window_start) <= 1995)
+
+# Save smoothed and filtered data to output folder
+write_csv(filt_smooth_data, "output/combo_smooth_data.csv")
