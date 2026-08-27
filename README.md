@@ -11,9 +11,12 @@ This repository contains scripts, documentation, and data to recreate Figure 3 f
 | File/Directory Name | Description |
 | ------------------- | ------------------- |
 | [data/](data/) | Directory containing all raw data csv files for this project. |
+| [docs/](docs/) | Directory containing all html files for this project, generated from paper.qmd. |
 | [figs/](figs/) | Directory containing all images for this project. |
-| [paper/](paper/) | Directory containing the cited publication for this project, Schaefer et al. (2000) |
+| [paper/](paper/) | Directory containing the cited publication for this project, Schaefer et al. (2000), and the paper.qmd file for this project. |
+| [R/](R/) | Directory containing all utility R scripts for this project. |
 | [scratch/](scratch/) | Directory containing all scratch code and documents for this project. |
+| [self_assessment.md](self_assessment.md) | Markdown file for the self-assessment on 27AUG2026. |
 
 ## Current Contributors:
 
