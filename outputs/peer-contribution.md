@@ -1,1 +1,0 @@
-In this folder you could add the csv you create at the end of your code with write_csv(smooth_data_longer, "../outputs/outputs.csv")
