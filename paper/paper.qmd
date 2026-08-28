@@ -13,12 +13,7 @@ library(tidyverse)
 library(knitr)
 ```
 
-```{r}
-#| echo: false
-
-# Load background image - Schaefer_etal_2000_Figure3.png
-knitr::include_graphics("../figs/Schaefer_etal_2000_Figure3.png")
-```
+![Schaefer_etal_2000_Figure3.png](Schaefer_etal_2000_Figure3.png)
 Figure 1: The original Figure 3 from Schaefer et al. (2000) depicting the concentrations of 5 measured ions - K, NO~3~-N, Mg, Ca, and NH~4~-H - across 4 stream sites in Puerto Rico before and after Hurricane Hugo in September 1989.
 
 ## Data
@@ -95,7 +90,7 @@ smooth_data_longer |>
     legend.title = element_blank(), # Remove legend title
     axis.title.y = element_blank(), # Remove y axis title
     strip.placement = "outside", # Move y labels (ions) outside y ticks
-    legend.justification = c(1, 1), # Anchor top-left of the legend box to the coordinate
+    legend.justification = c(1, 1), # Anchor legend box to the upper right
   ) +
   labs(
     x = "Years"
