@@ -17,6 +17,7 @@ This repository contains scripts, documentation, and data to recreate Figure 3 f
 | [paper/](paper/) | Directory containing the cited publication for this project, Schaefer et al. (2000), the paper.qmd file for this project, and the related yml file. |
 | [scratch/](scratch/) | Directory containing all scratch code and documents for this project. |
 | [1_clean_data.R](1_clean_data.R) | R script used to clean raw data and output intermediate data file to output/. |
+| [instructor_assessment.md](instructor_assessment.md) | Markdown file for instructor assessment on 28AUG2026. |
 | [peer_assessment.md](peer_assessment.md) | Markdown file for the peer-assessment on 27AUG2026. |
 | [self_assessment.md](self_assessment.md) | Markdown file for the self-assessment on 27AUG2026. |
 
