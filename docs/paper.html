@@ -57,20 +57,8 @@ ul.task-list li input[type="checkbox"] {
 <h1>EDS214 Final Project: Figure Reproducibility</h1>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>The following is the final project analysis for EDS214. The main goal for this project was to replicate Figure 3 from Schaefer et al.&nbsp;(2000) through the implementation of coding techniques learned in this class, including code automation, organization, documentation, and collaboration methods. Figure 1 below shows Figure 3 with the corresponding figure caption from the original Schaefer et al.&nbsp;(2000) publication.</p>
+<p>The following is the final project analysis for EDS214. The main goal for this project was to replicate Figure 3 from Schaefer et al.&nbsp;(2000) through the implementation of coding techniques learned in this class, including code automation, organization, documentation, and collaboration methods. Figure 1 below shows Figure 3 with the corresponding figure caption from the original Schaefer et al.&nbsp;(2000) publication. In this figure from the original publication, multiple stream sites in Puerto Rico were measured for ion concentrations before and after Hurricane Hugo in September 1989.</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.2.1     ✔ readr     2.2.0
-✔ forcats   1.0.1     ✔ stringr   1.6.0
-✔ ggplot2   4.0.3     ✔ tibble    3.3.1
-✔ lubridate 1.9.5     ✔ tidyr     1.3.2
-✔ purrr     1.2.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -79,49 +67,34 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Figure 1: The original Figure 3 from Schaefer et al.&nbsp;(2000) depicting the concentrations of 5 measured ions - K, NO<sub>3</sub>-N, Mg, Ca, and NH<sub>4</sub>-H - across 4 stream sites in Puerto Rico.</p>
+<p>Figure 1: The original Figure 3 from Schaefer et al.&nbsp;(2000) depicting the concentrations of 5 measured ions - K, NO<sub>3</sub>-N, Mg, Ca, and NH<sub>4</sub>-H - across 4 stream sites in Puerto Rico before and after Hurricane Hugo in September 1989.</p>
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>The below code generates a summary of one out the 4 data sets downloaded for this project.</p>
+<p>The four data sets downloaded from McDowell et al.&nbsp;(2024) corresponded to each of the 4 sites measured for the original Schaefer et al.&nbsp;(2000) publication: QuebradaCuenca1-Bisley.csv (BQ1), QuebradaCuenca2-Bisley.csv (BQ2), QuebradaCuenca3-Bisley.csv (BQ3), and RioMameyesPuenteRoto.csv (PRM). The fifth raw data file - LUQ LTER MDLs.csv - was only used as a reference for the unit type per ion measured, and is not directly included in this analysis.</p>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>For each site data set, the moving average was calculated across a 9 week measurement window for each of the five ions. These moving averages were then plotted in a line graph</p>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 177 Columns: 7
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr  (1): Site_ID
-dbl  (5): k_mgL, mg_mgL, no3-n_ugL, ca_mgL, nh4-n_ugL
-date (1): window_start
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-</div>
+<p>For each site data set, the moving average was calculated across a 9 week measurement window for each of the five ions - K (mg/L), NO<sub>3</sub>-N (ug/L), Mg (mg/L), Ca (mg/L), and NH<sub>4</sub>-H (ug/L). The resulting site data sets with this ion data transformation were combined into a single combined “smoothed” data set. This smoothed data set was then filtered to only include measurements taken in years relevant to the original Schaefer et al.&nbsp;(2000) Figure 3 - 1988 to 1995 - and the Sample ID column was updated to use “PRM” for the RioMameyesPuenteRoto.csv data.</p>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>The ion concentration moving averages from the filtered, smoothed, and combined data set were plotted in Figure 2 below as a line graph. Each plot row is a single ion - K (mg/L), NO<sub>3</sub>-N (ug/L), Mg (mg/L), Ca (mg/L), and NH<sub>4</sub>-H (ug/L) - with the data from each site denoted by different line types - PRM, BQ1, BQ2, and BQ3. Hurricane Hugo - which occurred in September 1989 - is marked by a vertical dashed line across all ion plots. The reproduced figure depicted in Figure 2 is mostly identical to the original Schaefer et al.&nbsp;(2000) Figure 3 in terms of design and format, and most of the data appears similar in shape according to the line plots. The NH<sub>4</sub>-H data for the plotted sites - downloaded from McDowell et al.&nbsp;(2024) - is more sparse compared to the NH<sub>4</sub>-H data the Schaefer et al.&nbsp;(2000) publication likely used.</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 306 rows containing missing values or values outside the scale range
-(`geom_line()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="paper_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="paper_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Figure 2: Replicated version of Schaefer et al.&nbsp;(2000) Figure 3 generated for this project.</p>
+<p>Figure 2: Replicated version of Schaefer et al.&nbsp;(2000) Figure 3 generated for this project. Each ion - K (mg/L), NO<sub>3</sub>-N (ug/L), Mg (mg/L), Ca (mg/L), and NH<sub>4</sub>-H (ug/L) - has an independent plot, while each site - PRM, BQ1, BQ2, and BQ3 - is represented on each plot by a specific line type. Hurricane Hugo in 1989 is marked with a dashed vertical line.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<p>Schaefer, D.A.; McDowell, W.H.; Scatena, F.N., and Asbury, C.E. (2000): Effects of hurricane disturbance on stream water concentrations and fluxes in eight tropical forest watersheds of the Luquillo Experimental Forest, Puerto Rico. Journal of Tropical Ecology.</p>
+<p>McDowell, William H., and USDA Forest Service. International Institute Of Tropical Forestry (IITF). 2024. “Chemistry of Stream Water from the Luquillo Mountains.” Environmental Data Initiative. https://doi.org/10.6073/PASTA/F31349BEBDC304F758718F4798D25458.</p>
+<p>Schaefer, Douglas. A., William H. McDowell, Fredrick N. Scatena, and Clyde E. Asbury. 2000. “Effects of Hurricane Disturbance on Stream Water Concentrations and Fluxes in Eight Tropical Forest Watersheds of the Luquillo Experimental Forest, Puerto Rico.” <em>Journal of Tropical Ecology</em> 16 (2): 189–207. https://doi.org/10.1017/s0266467400001358.</p>
 </section>
 </section>
 
