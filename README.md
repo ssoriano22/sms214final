@@ -2,7 +2,7 @@
 
 ## Description:
 
-This repository contains scripts, documentation, and data to recreate Figure 3 from Schaefer et al. (2000), shown below this description. This is the final project for EDS214, with the main goal of replicating this publication's Figure 3 through the implementation of code automation, organization, documentation, and collaboration techniques learned in this class. See the Repository Layout table below for navigational tools for this repository and additional details on this project workflow.
+This repository contains scripts, documentation, and data to recreate Figure 3 from Schaefer et al. (2000), shown below this description. This is the final project for EDS214, with the main goal of replicating this publication's Figure 3 through the implementation of code automation, organization, documentation, and collaboration techniques learned in this class. See the Repository Layout table below for navigational tools for this repository and additional details on this project workflow. The GitHub Page website for this project is here: [https://ssoriano22.github.io/sms214final/paper.html](<https://ssoriano22.github.io/sms214final/paper.html>)
 
 ![Figure 3, Schaefer et al. (2000)](docs/Schaefer_etal_2000_Figure3.png)
 
@@ -22,8 +22,10 @@ This repository contains scripts, documentation, and data to recreate Figure 3 f
 
 ## Current Contributors:
 
-Michaela Dennis - [GitHub] (<https://github.com/michaeladennis>)
-Priscilla Pierce - [GitHub] (<https://github.com/pr-scilla>)
+Michaela Dennis - [GitHub](<https://github.com/michaeladennis>)
+
+Priscilla Pierce - [GitHub](<https://github.com/pr-scilla>)
+
 Sophia Soriano - [GitHub](<https://github.com/ssoriano22>), [LinkedIn](<https://www.linkedin.com/in/smsoriano22>)
 
 ## References:
