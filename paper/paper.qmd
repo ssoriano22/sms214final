@@ -60,19 +60,19 @@ smooth_data_longer |>
   mutate(
     Ion = fct_recode(
       Ion,
-      `K mgL` = "k_mgL",
-      `NO3-N ugL` = "no3-n_ugL",
-      `Mg mgL` = "mg_mgL",
-      `Ca mgL` = "ca_mgL",
-      `NH4-N ugL` = "nh4-n_ugL"
+      `K mg/L` = "k_mgL",
+      `NO3-N ug/L` = "no3-n_ugL",
+      `Mg mg/L` = "mg_mgL",
+      `Ca mg/L` = "ca_mgL",
+      `NH4-N ug/L` = "nh4-n_ugL"
     ),
     Ion = fct_relevel(
       Ion,
-      "K mgL",
-      "NO3-N ugL",
-      "Mg mgL",
-      "Ca mgL",
-      "NH4-N ugL"
+      "K mg/L",
+      "NO3-N ug/L",
+      "Mg mg/L",
+      "Ca mg/L",
+      "NH4-N ug/L"
     ),
     Site_ID = fct_relevel(
       Site_ID,
