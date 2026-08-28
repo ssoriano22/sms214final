@@ -12,6 +12,7 @@ The following is the final project analysis for EDS214. The main goal for this p
 library(tidyverse)
 library(knitr)
 ```
+
 ```{r}
 #| echo: false
 
@@ -94,7 +95,6 @@ smooth_data_longer |>
     legend.title = element_blank(), # Remove legend title
     axis.title.y = element_blank(), # Remove y axis title
     strip.placement = "outside", # Move y labels (ions) outside y ticks
-    legend.position = c(1, 1), # Coordinates for the top-left corner inside the panel
     legend.justification = c(1, 1), # Anchor top-left of the legend box to the coordinate
   ) +
   labs(
