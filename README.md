@@ -30,6 +30,6 @@ Sophia Soriano - [GitHub](<https://github.com/ssoriano22>), [LinkedIn](<https://
 
 ## References:
 
-McDowell, William H., and USDA Forest Service. International Institute Of Tropical Forestry (IITF). 2024. “Chemistry of Stream Water from the Luquillo Mountains.” Environmental Data Initiative. https://doi.org/10.6073/PASTA/F31349BEBDC304F758718F4798D25458.
+McDowell, William H., and USDA Forest Service. International Institute Of Tropical Forestry (IITF). 2024. “Chemistry of Stream Water from the Luquillo Mountains.” Environmental Data Initiative. [https://doi.org/10.6073/PASTA/F31349BEBDC304F758718F4798D25458](<https://doi.org/10.6073/PASTA/F31349BEBDC304F758718F4798D25458>).
 
-Schaefer, D.A.; McDowell, W.H.; Scatena, F.N., and Asbury, C.E. (2000): Effects of hurricane disturbance on stream water concentrations and fluxes in eight tropical forest watersheds of the Luquillo Experimental Forest, Puerto Rico. _Journal of Tropical Ecology_.
+Schaefer, D.A.; McDowell, W.H.; Scatena, F.N., and Asbury, C.E. (2000): Effects of hurricane disturbance on stream water concentrations and fluxes in eight tropical forest watersheds of the Luquillo Experimental Forest, Puerto Rico. _Journal of Tropical Ecology_. [https://doi.org/10.1017/s0266467400001358.](<https://doi.org/10.1017/s0266467400001358>).
