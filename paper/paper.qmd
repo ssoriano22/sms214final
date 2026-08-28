@@ -1,4 +1,7 @@
-# EDS214 Final Project: Figure Reproducibility
+---
+title: "EDS214 Final Project: Figure Reproducibility"
+format: html
+---
 
 ## Background
 
@@ -11,6 +14,7 @@ The following is the final project analysis for EDS214. The main goal for this p
 # Load packages and utility functions
 library(tidyverse)
 library(knitr)
+library(ggh4x)
 ```
 
 ![Schaefer_etal_2000_Figure3.png](Schaefer_etal_2000_Figure3.png)
@@ -53,6 +57,7 @@ smooth_data_longer <- combo_smooth_data |>
 # Line plot - ggplot2, facet_grid()
 smooth_data_longer |>
   mutate(
+    # Recode and relevel ion and Site_ID factors for plotting
     Ion = fct_recode(
       Ion,
       `K mg/L` = "k_mgL",
@@ -78,6 +83,7 @@ smooth_data_longer |>
     )
   ) |>
   ggplot(
+    # Start ggplot line plot
     mapping = aes(
       x = window_start,
       y = Mean_Concentration,
@@ -87,28 +93,46 @@ smooth_data_longer |>
   geom_line() +
   theme_bw() +
   theme(
+    #Set legend placement, gridlines, y axis labels
     legend.title = element_blank(), # Remove legend title
     axis.title.y = element_blank(), # Remove y axis title
     strip.placement = "outside", # Move y labels (ions) outside y ticks
     legend.justification = c(1, 1), # Anchor legend box to the upper right
-  ) +
-  labs(
-    x = "Years"
+    panel.grid = element_blank(), # Remove gridlines
+    axis.ticks.length = unit(-0.2, "cm"), # Create year x-axis ticks in plot area
+    axis.minor.ticks.length = unit(-0.1, "cm") # Adjust size of minor x-axis ticks
   ) +
   facet_grid(
+    # Create one plot per ion, each w/ independent y scales on the left side
     Ion ~ .,
     scales = "free_y", # Independent y-axis scales per grid
-    switch = "y" # Move y ion labels to left side
+    switch = "y", # Move y ion labels to left side
+    axes = "all", # Add x-axis ticks to all ion plots
+    axis.labels = "margins" # Keeps only top and bottom year labels
   ) +
   scale_x_date(
-    sec.axis = dup_axis(),
-    limits = as.Date(c("1988-01-01", "1994-06-01"))
+    # Scale x axis (dates) as years, top and bottom
+    limits = as.Date(c("1988-01-01", "1994-06-01")),
+    date_breaks = "1 year",
+    date_minor_breaks = "2 months",
+    date_labels = "%Y"
+  ) +
+  guides(
+    # Adds second x axis on top w/ minor ticks - ggh4x pkg
+    x = guide_axis(minor.ticks = TRUE),
+    x.sec = guide_axis(minor.ticks = TRUE, title = "Years")
   ) +
   geom_vline(
+    # Create vertical line for hurricane Sep. 1989
     xintercept = as.Date("1989-09-01"),
     color = "black",
     linetype = "dashed",
     linewidth = 0.5
+  ) +
+  labs(
+    # Set x axis label
+    x = "Years",
+    x.sec = "Years"
   )
 ```
 
